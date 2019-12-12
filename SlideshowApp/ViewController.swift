@@ -26,6 +26,7 @@ class ViewController: UIViewController {
         // 初期画像
         let image = UIImage(named: "images1.jpeg")
         imageView.image = image
+
     }
     // 表示している画像の番号
     var imageNo = 0
@@ -58,6 +59,8 @@ class ViewController: UIViewController {
                 imageNo = 0
                 showImage()
             }
+        }else{
+            
         }
     }
     @IBAction func bothPush(_ sender: Any) {
@@ -65,13 +68,19 @@ class ViewController: UIViewController {
         if timer == nil{
             self.timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(updateTimer(_:)), userInfo: nil, repeats: true)
             both.setTitle("停止", for: .normal)
+            susumu.isEnabled = false
+            modoru.isEnabled = false
+            
         }else{
             self.timer.invalidate()
             self.timer = nil
             both.setTitle("再生", for: .normal)
+             susumu.isEnabled = true
+             modoru.isEnabled = true
         }
     }
     @IBAction func modoruPush(_ sender: Any) {
+       
         if timer == nil{
             if imageNo > 0{
                 imageNo -= 1
@@ -80,6 +89,8 @@ class ViewController: UIViewController {
                 imageNo = imageArray.count-1
                 showImage()
             }
+        }else{
+            
         }
     }
     
@@ -96,7 +107,10 @@ class ViewController: UIViewController {
             self.timer.invalidate()
             self.timer = nil
             both.setTitle("再生", for: .normal)
+            susumu.isEnabled = true
+            modoru.isEnabled = true
         }
+        
     }
     
     @IBAction func unwind(_segue: UIStoryboardSegue){
