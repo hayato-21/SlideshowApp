@@ -91,7 +91,12 @@ class ViewController: UIViewController {
         currentView = self.imageArray[imageNo]
         expandViewController.x = currentView
         
-        
+        //修正箇所。再生中のみ、押した瞬間に処理を無効化する。
+        if timer != nil{
+            self.timer.invalidate()
+            self.timer = nil
+            both.setTitle("再生", for: .normal)
+        }
     }
     
     @IBAction func unwind(_segue: UIStoryboardSegue){
